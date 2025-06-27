@@ -4,9 +4,11 @@ sqlalchemy
 alembic
 pydantic
 pydantic-settings
-python-multipar
+pydantic[email]
 python-jose[cryptography]
 passlib[bcrypt]
 aiosmtplib
 jinja2
 python-dotenv
+email-validator
+python-multipart
