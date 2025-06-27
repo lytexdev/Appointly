@@ -1,0 +1,259 @@
+// Responsive breakpoints
+@mixin sm {
+  @media (min-width: $bp-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $bp-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $bp-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $bp-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: $bp-2xl) {
+    @content;
+  }
+}
+
+// Button mixins
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  font-weight: $font-medium;
+  font-size: $font-base;
+  line-height: $leading-normal;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all $transition-fast;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background-color: $primary;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-base;
+  background-color: $bg-secondary;
+  color: $text-primary;
+  border-color: $border-medium;
+
+  &:hover:not(:disabled) {
+    background-color: $gray-200;
+    border-color: $border-dark;
+  }
+}
+
+@mixin btn-outline {
+  @include btn-base;
+  background-color: transparent;
+  color: $primary;
+  border-color: $primary;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: $text-white;
+  }
+}
+
+@mixin btn-danger {
+  @include btn-base;
+  background-color: $error;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $error-dark;
+  }
+}
+
+@mixin btn-success {
+  @include btn-base;
+  background-color: $success;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $success-dark;
+  }
+}
+
+// Card mixin
+@mixin card {
+  background-color: $bg-primary;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-md;
+  border: 1px solid $border-light;
+  overflow: hidden;
+}
+
+// Form input mixins
+@mixin input-base {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 2px solid $border-medium;
+  border-radius: $radius-lg;
+  font-size: $font-base;
+  line-height: $leading-normal;
+  transition: all $transition-fast;
+  background-color: $bg-primary;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &:disabled {
+    background-color: $bg-muted;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $error;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error, 0.1);
+    }
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Loading spinner
+@mixin spinner($size: 20px, $color: $primary) {
+  width: $size;
+  height: $size;
+  border: 2px solid rgba($color, 0.3);
+  border-top: 2px solid $color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include sm {
+    max-width: $container-sm;
+  }
+
+  @include md {
+    max-width: $container-md;
+    padding: 0 $spacing-lg;
+  }
+
+  @include lg {
+    max-width: $container-lg;
+  }
+
+  @include xl {
+    max-width: $container-xl;
+  }
+
+  @include xxl {
+    max-width: $container-2xl;
+  }
+}
+
+// Hover effects
+@mixin hover-lift {
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin hover-glow($color: $primary) {
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba($color, 0.3);
+  }
+}

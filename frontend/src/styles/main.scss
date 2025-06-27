@@ -1,4 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
-}
+// Main SCSS file - import all styles
+
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'components';
+@use 'utilities';
+@use 'pages/auth';
+@use 'pages/dashboard';
+@use 'pages/booking';
+@use 'pages/admin';
